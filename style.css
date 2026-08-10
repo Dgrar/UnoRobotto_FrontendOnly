@@ -77,9 +77,7 @@ body {
     animation: disappear .5s forwards;
 }
 
-.start-hidden {
-    display: none;
-}
+
 
 @keyframes disappear {
     0% {
@@ -194,4 +192,8 @@ body {
 
 .player-name-input.green {
     --focus-color: #86efac;
+}
+
+.start-hidden {
+    display: none;
 }

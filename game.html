@@ -20,7 +20,7 @@
         <button onclick="playerNames(3)" class="start-btn green low">3</button>
         <button onclick="playerNames(4)" class="start-btn blue low">4</button>
     </section>
-    <section class="player-names global-cont">
+    <section class="player-names start-hidden global-cont ">
         <div class="container">
             <h2 class="title">Nombres</h2>
             <div class="playerNames">
@@ -29,12 +29,14 @@
             <button onclick="tryStart()" class="start-btn green">Jugar</button>
         </div>
     </section>
-    <section class="game global-cont">
+    <section class="game start-hidden global-cont">
         <div class="container">
         <h2 class="title">Juego</h2>
-        <button class="start-btn yellow big">Jugar Carta</button>
+        <button onclick="playTurn()" class="start-btn yellow big">Jugar Carta</button>
+        <p class="turns-counter">Turnos: n</p>
         </div>
     </section>
     <script src="script.js"></script>
+    <section class="event global-cont"></section>
 </body>
 </html>
