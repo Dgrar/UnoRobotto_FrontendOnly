@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Uno</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="main global-cont">
+        <div class="container">
+        <h2 class="title">Robot Uno</h2>
+        <button onclick="changeScreens('.main', '.player-count')" class="start-btn">Empezar</button>
+        </div>
+    </section>
+    <section class="player-count start-hidden global-cont">
+        <div class="container">
+        <h2 class="title">Jugadores</h2>
+        <button onclick="playerNames(2)" class="start-btn red low">2</button>
+        <button onclick="playerNames(3)" class="start-btn green low">3</button>
+        <button onclick="playerNames(4)" class="start-btn blue low">4</button>
+    </section>
+    <section class="player-names global-cont">
+        <div class="container">
+            <h2 class="title">Nombres</h2>
+            <div class="playerNames">
+                <!-- LOS INPUTS -->
+            </div>
+            <button onclick="tryStart()" class="start-btn green">Jugar</button>
+        </div>
+    </section>
+    <section class="game global-cont">
+        <div class="container">
+        <h2 class="title">Juego</h2>
+        <button class="start-btn yellow big">Jugar Carta</button>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>

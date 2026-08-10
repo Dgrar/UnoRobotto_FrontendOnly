@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #f8fafc;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    width: 100vw;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #1e293b;
+    letter-spacing: -0.05em;
+}
+
+.start-btn {
+    --bg-color: #bae6fd;
+    --border-color: color-mix(in srgb, var(--bg-color), #000 30%);
+    --shadow-color: color-mix(in srgb, var(--bg-color), #000 15%);
+
+    padding: .8rem 1.5rem;
+    border-radius: 14px;
+    border: none;
+    background-color: var(--bg-color);
+    border-bottom: 6px solid var(--border-color);
+    
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: color-mix(in srgb, var(--bg-color), #000 100%);
+    cursor: pointer;
+    
+    transition: all .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    width: 80%;
+    height: 10vh;
+}
+
+/* --- INTERACCIONES --- */
+.start-btn:hover {
+    filter: brightness(1.05);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px var(--shadow-color);
+}
+
+.start-btn:active {
+    border-bottom-width: 0px;
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+    animation: disappear .5s forwards;
+}
+
+.start-hidden {
+    display: none;
+}
+
+@keyframes disappear {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    99% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        display: none;
+    }
+}
+
+.global-cont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 90vh;
+}
+
+.start-btn.low {
+    height: 6vh;
+}
+
+.start-btn.red {
+    --bg-color: #fca5a5;
+}
+
+.start-btn.blue {
+    --bg-color: #93c5fd;
+}
+
+.start-btn.green {
+    --bg-color: #86efac;
+}
+
+.start-btn.yellow{
+    --bg-color: #fef08a;
+}
+
+.start-btn.big{
+    height:12vh;
+    width: max(24vw, 16rem)
+}
+
+.playerNames {
+    display: grid;
+    grid-template-columns: repeat(2,1fr); 
+    justify-items: center;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+
+.player-name-input {
+    --focus-color: #93c5fd;
+    --border-color: color-mix(in srgb, var(--focus-color), #000 20%);
+    --shadow-color: color-mix(in srgb, var(--focus-color), #000 10%);
+
+    width: 80%;
+    height: 7vh;
+    padding: 0 1.2rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #334155;
+    
+    background-color: #ffffff;
+    border: 2px solid #cbd5e1;
+    border-bottom: 5px solid #94a3b8;
+    border-radius: 12px;
+    outline: none;
+    
+    transition: all 0.2s ease-in-out;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.player-name-input:hover {
+    border-color: #94a3b8;
+    border-bottom-color: #64748b;
+}
+
+.player-name-input:focus {
+    background-color: #ffffff;
+    border-color: var(--focus-color);
+    border-bottom: 5px solid var(--border-color);
+    box-shadow: 0 10px 15px -3px var(--shadow-color), 
+                inset 0 2px 4px rgba(0, 0, 0, 0.02);
+    transform: translateY(-2px);
+}
+
+
+.player-name-input::placeholder {
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+
+.player-name-input.red {
+    --focus-color: #fca5a5;
+}
+
+.player-name-input.blue {
+    --focus-color: #93c5fd;
+}
+
+.player-name-input.green {
+    --focus-color: #86efac;
+}
