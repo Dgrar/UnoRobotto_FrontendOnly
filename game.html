@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Robot Uno</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <section class="main global-cont">
@@ -32,11 +33,29 @@
     <section class="game start-hidden global-cont">
         <div class="container">
         <h2 class="title">Juego</h2>
+        <div class="states">
+            <i class="stateIcon fa-solid fa-user-ninja"></i>
+            <i class="stateIcon fa-solid fa-peace"></i>
+        </div>
         <button onclick="playTurn()" class="start-btn yellow big">Jugar Carta</button>
-        <p class="turns-counter">Turnos: n</p>
+        <p class="turns-counter">Turnos jugados: 0</p>
+        </div>
+    </section>
+    <section class="event start-hidden global-cont">
+        <div class="container event-container">
+            <h2 class="title">Evento!</h2>
+            <hr class="separation">
+            <h3 class="event-name"></h3>
+            <hr class="separation">
+            <h4 class="event-affected"></h4>
+            <hr class="separation">
+            <p class="event-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, tempora. Temporibus magnam ullam nisi, tenetur, aut officia, ea quibusdam rem quas autem dolore voluptatibus officiis iure! Ut saepe dolore dignissimos.</p>
+            <hr class="separation">
+            <h4 class="event-turn"></h4>
+            <button onclick="keepPlaying()" class="start-btn green">Seguir jugando</button>
         </div>
     </section>
     <script src="script.js"></script>
-    <section class="event global-cont"></section>
+    
 </body>
 </html>
