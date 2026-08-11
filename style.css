@@ -230,17 +230,59 @@ body {
 
 .stateIcon{
     font-size: xx-large;
-    display: none;
+    transform: scale(0);
 }
 
 .stateIcon.active{
-    display: block;
+    font-size: xx-large;
+    transform: scale(1);
 }
 
 .states {
     display: flex;
     align-items: center;
     justify-content: center;
-
     margin-bottom: 20px; /* Ajusta según necesites */
+}
+
+.quien-juega {
+    font-size: 18px;
+    margin-bottom: 20px;
+    min-height: 24px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.quien-juega.visible {
+    opacity: 1;
+}
+
+.states {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.stateIcon {
+    font-size: xx-large;
+}
+
+.stateIcon.active {
+    opacity: 1;
+}
+.visible{
+    display: block;
+}
+
+.separation{
+    width: 100%;
+    background-color: black;
+    height:2px
+}
+
+.desc{
+    letter-spacing: -0.02em;
 }

@@ -61,6 +61,9 @@ function tryStart() {
     }
     names.push(name);
     }
+    const starting_player = names[Math.floor(Math.random() * names.length)]
+    const starting_p = document.querySelector(".quien-juega")
+    starting_p.textContent = `Empieza ${starting_player}`
     changeScreens('.player-names', '.game');
 }
 
@@ -72,13 +75,27 @@ const events = {
     "Trueque": { descripción: "Intercambiad s de vuestras cartas", afectados: 2, opciones: [1, 2, 3] },
     "Regalo obligado": { descripción: "Elige a un rival y regálale s de tus cartas", afectados: 1, opciones: [1, 2, 3] },
     "Impuesto de juego": { descripción: "Todos los jugadores deben robar s cartas excepto tú", afectados: 1, opciones: [1, 2, 3] },
-    "Ruleta numérica": { descripción: "Descarta todas tus cartas que tengan el número s", afectados: 1, opciones: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] },
+    "Purga numérica": { descripción: "Descarta todas tus cartas que tengan el número s", afectados: 1, opciones: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] },
+    "Feliz Cumpleaños": { descripción: "Elige aleatoriamente s cartas del jugador que quieras", afectados: 2, opciones: [1, 2, 3] },
     "Manos limpias": { descripción: "Muestra todas tus cartas al resto de jugadores si tienes s cartas o más", afectados: 1, opciones: [5, 6, 7, 8] },
     "Comodín Escondido": { descripción: "El color en juego cambia inmediatamente a s", afectados: 0, opciones: ["Rojo", "Verde", "Amarillo", "Azul"] },
-    "Modo agresivo": {descripción: "Habeis entrado en modo agresivo, ahora cada vez que os hagan robar cartas robais el doble", afectados:0,opciones:[]},
-    "Tranquilidad": {descripción: "Habeis entrado en modo tranquido, ahora cada vez que os hagan robar cartas, robais la mitad", afectados:0,opciones:[]},
-    "Vuelta a la normalidad": {descripción: "Cualquier estado en el que estuvierais se ha detenido, volveis a jugar normal",afectados:0,opciones:[]}
+    "Ás bajo la manga": { descripción: "Descarta una carta por cada carta de número/símbolo s", afectados: 1, opciones: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "+2", "Reversa", "+4", "Skip"] },
+    "Modo agresivo": { descripción: "Habeis entrado en modo agresivo, ahora cada vez que os hagan robar cartas robais el doble", afectados: 0, opciones: [] },
+    "Tranquilidad": { descripción: "Habeis entrado en modo tranquido, ahora cada vez que os hagan robar cartas, robais la mitad", afectados: 0, opciones: [] },
+    "Vuelta a la normalidad": { descripción: "Cualquier estado en el que estuvierais se ha detenido, volveis a jugar normal", afectados: 0, opciones: [] },
+    "Venganza numérica": { descripción: "Elige a un rival y oblígale a robar tantas cartas como cartas de número s tengas en tu mano", afectados: 1, opciones: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] },
+    "Bloqueo total": {descripción: "Se le saltan los s siguientes turnos al jugador elegido", afectados:1, opciones:[1,2]},
+    "Robo de color": { descripción: "Elige a un rival; si tiene cartas de color s, te las tiene que dar todas", afectados: 1, opciones: ["Rojas", "Verdes", "Amarillas", "Azules"] },
+    "Ruleta rusa": { descripción: "Roba s cartas; si alguna es un comodín o carta especial, te las quedas todas, si no, las descartas", afectados: 1, opciones: [1, 2, 3, 4] },
+    "Efecto espejo": { descripción: "El próximo jugador que use una carta especial (s) sufrirá su propio efecto en lugar del objetivo original", afectados: 0, opciones: ["+2", "Salto", "Reversa", "+4"] },
+    "Solidaridad forzada": { descripción: "El jugador con menos cartas debe repartir s de sus cartas al jugador que tenga más cartas", afectados: 0, opciones: [1, 2, 3] },
+    "Impuesto de lujo": { descripción: "Si tienes s cartas o más en la mano, debes descartar la mitad de ellas (redondeando hacia abajo)", afectados: 1, opciones: [5, 6, 7, 8] },
+    "Fiebre de cartas": { descripción: "Todos los jugadores roban s cartas de forma inmediata", afectados: 0, opciones: [1, 2, 3] },
+    "Comunismo": { descripción: "Todos los jugadores ponen s cartas boca abajo en la mesa, se mezclan y se reparte una a cada uno de forma aleatoria", afectados: 0, opciones: [1,2,3] },
+    "Cura de humildad": { descripción: "El jugador con menos cartas de la mesa debe robar inmediatamente s cartas", afectados: 0, opciones: [2, 3, 4] },
+    "Última oportunidad": { descripción: "Si te queda solo s carta(s) en la mano, roba 3 cartas inmediatamente", afectados: 1, opciones: [1, 2, 3, 4, 5] },
 };
+
 
 // Seleccionar evento aleatorio y reemplazar la 's'
 function chooseEvent() {
@@ -116,10 +133,14 @@ let currentMode = "Normal"
 let turns = 0
 // Ejecutar el turno
 function playTurn() {
+    const starting_p = document.querySelector(".quien-juega")
+    if (starting_p.classList.contains("visible")){
+        starting_p.classList.remove("visible")
+    }
     turns++
     const turnCounter = document.querySelector(".turns-counter")
     turnCounter.textContent = `Turnos jugados: ${turns}`
-    if (Math.random() < 0.15) { // 15% de probabilidad de evento
+    if (Math.random() < 0.20) { // 20% de probabilidad de evento
         const event_chosen = chooseEvent();
         const afectados = randomSample(names, event_chosen.afectados);
         const turno = names[Math.floor(Math.random() * names.length)];
@@ -136,36 +157,35 @@ function playTurn() {
         }
 
         if (TrueEvent.name === "Modo agresivo"){
-            const hardIcon = document.querySelector(".fa-user-ninja")
+            const hardIcon = document.querySelector("i.fa-user-ninja")
             hardIcon.classList.add("active")
-            if (currentMode != "Vuelta a la normalidad"){
-                const easyIcon = document.querySelector(".fa-peace")
+            if (currentMode !== "Vuelta a la normalidad"){
+                const easyIcon = document.querySelector("i.fa-peace")
                 easyIcon.classList.remove("active")
                 currentMode = "Vuelta a la normalidad"
             }
             currentMode = "Modo agresivo"
         }
         if (TrueEvent.name === "Tranquilidad"){
-            const easyIcon = document.querySelector(".fa-peace")
+            const easyIcon = document.querySelector("i.fa-peace")
             easyIcon.classList.add("active")
-            if (currentMode != "Vuelta a la normalidad"){
-                const hardIcon = document.querySelector(".fa-user-ninja")
+            if (currentMode !== "Vuelta a la normalidad"){
+                const hardIcon = document.querySelector("i.fa-user-ninja")
                 hardIcon.classList.remove("active")
                 currentMode = "Vuelta a la normalidad"
             }
             currentMode = "Tranquilidad"
         }
         if (TrueEvent.name === "Vuelta a la normalidad"){
-            if (currentMode === "agresivo"){
-                const hardIcon = document.querySelector(".fa-user-ninja")
+            if (currentMode === "Modo agresivo"){
+                const hardIcon = document.querySelector("i.fa-user-ninja")
                 hardIcon.classList.remove("active")
             }
-            if (currentMode === "tranquilo"){
-                const easyIcon = document.querySelector(".fa-peace")
+            if (currentMode === "Tranquilidad"){
+                const easyIcon = document.querySelector("i.fa-peace")
                 easyIcon.classList.remove("active")
-                currentMode = "Normal"
             }
-            currentMode = "Vuelta a la normalidad"
+            currentMode = "Normal"
         }
         showEvent(TrueEvent)
     }
@@ -190,7 +210,7 @@ function showEvent(event){
     }
 
     event_description.textContent = event.description
-    next_turn.textContent = event.Juega
+    next_turn.textContent = `Ahora juega: ${event.Juega}`
 
     const container = document.querySelector(".event")
     container.classList.remove("start-hidden", "hidden")
@@ -201,5 +221,4 @@ function keepPlaying(){
     const container = document.querySelector(".event")
     container.classList.remove("appearing")
     container.classList.add("hidden")
-
 }
