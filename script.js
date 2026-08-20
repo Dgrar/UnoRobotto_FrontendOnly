@@ -93,6 +93,7 @@ const events = {
     "Fiebre de cartas": { descripción: "Todos los jugadores roban s cartas de forma inmediata", afectados: 0, opciones: [1, 2, 3] },
     "Comunismo": { descripción: "Todos los jugadores ponen s cartas boca abajo en la mesa, se mezclan y se reparte una a cada uno de forma aleatoria", afectados: 0, opciones: [1,2,3] },
     "Cura de humildad": { descripción: "El jugador con menos cartas de la mesa debe robar inmediatamente s cartas", afectados: 0, opciones: [2, 3, 4] },
+    "Buffet de cartas": { descripción: "Roba s cartas y elige cuál descartar", afectados: 1, opciones: [2, 3, 4, 5] },
     "Última oportunidad": { descripción: "Si te queda solo s carta(s) en la mano, roba 3 cartas inmediatamente", afectados: 1, opciones: [1, 2, 3, 4, 5] },
 };
 
